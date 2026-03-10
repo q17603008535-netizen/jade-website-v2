@@ -1,10 +1,10 @@
-name = "jade-oauth"
+name = "jade-website-v2"
 main = "index.js"
 compatibility_date = "2024-01-01"
 
 [env.production]
 routes = [
-  { pattern = "jade-website-v2.q17603008535.workers.dev/auth", zone_name = "q17603008535.workers.dev" },
-  { pattern = "jade-website-v2.q17603008535.workers.dev/callback", zone_name = "q17603008535.workers.dev" },
-  { pattern = "jade-website-v2.q17603008535.workers.dev/check", zone_name = "q17603008535.workers.dev" }
+  { pattern = "jade-website-v2.q17603008535.workers.dev/auth" },
+  { pattern = "jade-website-v2.q17603008535.workers.dev/callback" },
+  { pattern = "jade-website-v2.q17603008535.workers.dev/check" }
 ]
