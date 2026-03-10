@@ -1,0 +1,94 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+	<div class="container">
+		<div class="footer-content">
+			<div class="footer-brand">
+				<h3>翡翠原石專業買手</h3>
+				<p>10年行業經驗 | 瑞麗公司 | 一物一證</p>
+			</div>
+			
+			<div class="footer-links">
+				<a href="#about">關於我們</a>
+				<a href="#products">產品展示</a>
+				<a href="#contact">聯繫我們</a>
+			</div>
+			
+			<div class="footer-social">
+				<span>（社交媒體鏈接待添加）</span>
+			</div>
+		</div>
+		
+		<div class="footer-bottom">
+			<p>&copy; {currentYear} 翡翠原石專業買手. All rights reserved.</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		background-color: var(--color-dark);
+		color: white;
+		padding: 3rem 0 1.5rem;
+	}
+	
+	.footer-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 2rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	
+	.footer-brand h3 {
+		font-size: 1.3rem;
+		margin-bottom: 0.5rem;
+	}
+	
+	.footer-brand p {
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 0.9rem;
+	}
+	
+	.footer-links {
+		display: flex;
+		gap: 2rem;
+	}
+	
+	.footer-links a {
+		color: rgba(255, 255, 255, 0.8);
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+	
+	.footer-links a:hover {
+		color: var(--color-secondary);
+	}
+	
+	.footer-social {
+		color: rgba(255, 255, 255, 0.6);
+	}
+	
+	.footer-bottom {
+		padding-top: 1.5rem;
+		text-align: center;
+		color: rgba(255, 255, 255, 0.5);
+		font-size: 0.85rem;
+	}
+	
+	@media (max-width: 768px) {
+		.footer-content {
+			flex-direction: column;
+			text-align: center;
+		}
+		
+		.footer-links {
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
+</style>

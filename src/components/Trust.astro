@@ -1,0 +1,106 @@
+---
+---
+
+<section id="trust" class="trust">
+	<div class="container">
+		<h2 class="section-title">信任保證</h2>
+		<p class="section-subtitle">讓您購買無憂</p>
+		
+		<div class="trust-grid">
+			<div class="trust-card">
+				<div class="trust-icon">📜</div>
+				<h3>一物一證</h3>
+				<p>每件翡翠原石均附帶專業鑒定證書，保證品質真實</p>
+			</div>
+			
+			<div class="trust-card">
+				<div class="trust-icon">💰</div>
+				<h3>本地匯率</h3>
+				<p>匯率走本地匯率，比國際匯率低近50%，價格更優惠</p>
+			</div>
+			
+			<div class="trust-card">
+				<div class="trust-icon">🛡️</div>
+				<h3>源頭直採</h3>
+				<p>親赴緬甸礦區直接採購，省去中間環節，品質更有保障</p>
+			</div>
+			
+			<div class="trust-card">
+				<div class="trust-icon">📊</div>
+				<h3>20%代購費</h3>
+				<p>收費透明，只賺取20%代購費，不隱藏費用</p>
+			</div>
+			
+			<div class="trust-card">
+				<div class="trust-icon">🏢</div>
+				<h3>瑞麗公司</h3>
+				<p>瑞麗設有公司，誠信經營，資質齊全</p>
+			</div>
+			
+			<div class="trust-card">
+				<div class="trust-icon">🔧</div>
+				<h3>合作工廠</h3>
+				<p>擁有合作的加工廠，提供一站式服務</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.trust {
+		background-color: var(--color-light);
+	}
+	
+	.trust-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+	}
+	
+	.trust-card {
+		background: white;
+		padding: 2rem;
+		border-radius: 8px;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
+	
+	.trust-card:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+	}
+	
+	.trust-card:hover .trust-icon {
+		transform: scale(1.15) rotate(5deg);
+	}
+	
+	.trust-icon {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+		transition: transform 0.3s ease;
+	}
+	
+	.trust-card h3 {
+		font-size: 1.3rem;
+		color: var(--color-primary);
+		margin-bottom: 0.8rem;
+	}
+	
+	.trust-card p {
+		color: var(--color-gray);
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+	
+	@media (max-width: 992px) {
+		.trust-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+	
+	@media (max-width: 576px) {
+		.trust-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

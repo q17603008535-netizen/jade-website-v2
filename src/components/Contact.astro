@@ -1,0 +1,161 @@
+---
+---
+
+<section id="contact" class="contact">
+	<div class="container">
+		<h2 class="section-title">聯繫我們</h2>
+		<p class="section-subtitle">歡迎咨詢，竭誠為您服務</p>
+		
+		<div class="contact-content">
+			<div class="contact-info">
+				<div class="contact-method">
+					<h3>微信</h3>
+					<p>（二維碼待添加）</p>
+				</div>
+				
+				<div class="contact-method">
+					<h3>Line</h3>
+					<p>（ID待添加）</p>
+				</div>
+				
+				<div class="contact-method">
+					<h3>Email</h3>
+					<p>（郵箱待添加）</p>
+				</div>
+				
+				<div class="contact-method">
+					<h3>公司地址</h3>
+					<p>雲南省瑞麗市</p>
+				</div>
+			</div>
+			
+			<div class="contact-form">
+				<h3>在線咨詢</h3>
+				<form>
+					<div class="form-group">
+						<label for="name">姓名</label>
+						<input type="text" id="name" name="name" placeholder="請輸入您的姓名" />
+					</div>
+					
+					<div class="form-group">
+						<label for="phone">電話</label>
+						<input type="tel" id="phone" name="phone" placeholder="請輸入您的電話" />
+					</div>
+					
+					<div class="form-group">
+						<label for="message">留言</label>
+						<textarea id="message" name="message" rows="4" placeholder="請輸入您的咨詢內容"></textarea>
+					</div>
+					
+					<button type="submit" class="btn-submit">提交咨詢</button>
+				</form>
+			</div>
+		</div>
+		<p class="form-note">* 提交後我們會盡快與您聯繫，敬請放心</p>
+	</div>
+</section>
+
+<style>
+	.contact {
+		background-color: var(--color-primary);
+		color: white;
+	}
+	
+	.contact .section-title {
+		color: white;
+	}
+	
+	.contact .section-subtitle {
+		color: rgba(255, 255, 255, 0.7);
+	}
+	
+	.contact-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4rem;
+	}
+	
+	.contact-method {
+		margin-bottom: 2rem;
+	}
+	
+	.contact-method h3 {
+		font-size: 1.2rem;
+		margin-bottom: 0.5rem;
+		color: var(--color-secondary);
+	}
+	
+	.contact-method p {
+		color: rgba(255, 255, 255, 0.85);
+	}
+	
+	.contact-form {
+		background: white;
+		padding: 2rem;
+		border-radius: 8px;
+		color: var(--color-dark);
+	}
+	
+	.contact-form h3 {
+		font-size: 1.3rem;
+		margin-bottom: 1.5rem;
+		color: var(--color-primary);
+	}
+	
+	.form-group {
+		margin-bottom: 1.2rem;
+	}
+	
+	.form-group label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-weight: 500;
+	}
+	
+	.form-group input,
+	.form-group textarea {
+		width: 100%;
+		padding: 0.8rem;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 1rem;
+		font-family: inherit;
+	}
+	
+	.form-group input:focus,
+	.form-group textarea:focus {
+		outline: none;
+		border-color: var(--color-primary);
+	}
+	
+	.btn-submit {
+		width: 100%;
+		padding: 1rem;
+		background-color: var(--color-primary);
+		color: white;
+		border: none;
+		border-radius: 4px;
+		font-size: 1rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+	
+	.btn-submit:hover {
+		background-color: var(--color-primary-dark);
+	}
+	
+	.form-note {
+		text-align: center;
+		margin-top: 2rem;
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 0.9rem;
+	}
+	
+	@media (max-width: 768px) {
+		.contact-content {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+</style>

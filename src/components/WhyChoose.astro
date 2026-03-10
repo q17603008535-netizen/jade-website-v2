@@ -1,0 +1,114 @@
+---
+---
+
+<section id="why-choose" class="why-choose">
+	<div class="container">
+		<h2 class="section-title">為什麼選擇我們</h2>
+		<p class="section-subtitle">四大核心優勢</p>
+		
+		<div class="reasons-grid">
+			<div class="reason-card">
+				<div class="reason-number">01</div>
+				<h3>價格優勢</h3>
+				<p>收貨量大，能拿到品質高、價格低的原石。本地匯率比國際匯率低近50%，讓您享受實在的優惠。</p>
+			</div>
+			
+			<div class="reason-card">
+				<div class="reason-number">02</div>
+				<h3>品質保證</h3>
+				<p>瑞麗設有公司和加工廠，一物一證，品質真實可靠。多年行業經驗，精準判斷原石價值。</p>
+			</div>
+			
+			<div class="reason-card">
+				<div class="reason-number">03</div>
+				<h3>專業可靠</h3>
+				<p>10年行業經驗，14年雕刻學徒出身，擁有獨特的買原石邏輯。保證客戶買到的原石都能做貨。</p>
+			</div>
+			
+			<div class="reason-card">
+				<div class="reason-number">04</div>
+				<h3>客戶口碑</h3>
+				<p>不割韭菜，真實做生意。5位以上客戶跟隨3年以上，誠信經營，口碑良好。</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.why-choose {
+		background-color: var(--color-light);
+	}
+	
+	.reasons-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 2rem;
+	}
+	
+	.reason-card {
+		background: white;
+		padding: 2rem;
+		border-radius: 8px;
+		position: relative;
+		overflow: hidden;
+		transition: all 0.3s ease;
+	}
+	
+	.reason-card:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+	}
+	
+	.reason-card:hover::before {
+		width: 6px;
+	}
+	
+	.reason-card:hover .reason-number {
+		color: rgba(26, 92, 76, 0.2);
+		transform: scale(1.1);
+	}
+	
+	.reason-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 4px;
+		height: 100%;
+		background: var(--color-primary);
+	}
+	
+	.reason-number {
+		font-size: 3rem;
+		font-weight: 700;
+		color: rgba(26, 92, 76, 0.1);
+		position: absolute;
+		top: 10px;
+		right: 15px;
+		transition: all 0.3s ease;
+	}
+	
+	.reason-card h3 {
+		font-size: 1.3rem;
+		color: var(--color-primary);
+		margin-bottom: 1rem;
+	}
+	
+	.reason-card p {
+		color: var(--color-gray);
+		font-size: 0.95rem;
+		line-height: 1.7;
+	}
+	
+	@media (max-width: 992px) {
+		.reasons-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+	
+	@media (max-width: 576px) {
+		.reasons-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

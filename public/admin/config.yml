@@ -1,0 +1,49 @@
+backend:
+  name: github
+  repo: q17603008535-netizen/jade-website
+  branch: main
+  base_url: https://jade-website.q17603008535.workers.dev
+
+media_folder: public/images
+public_folder: /images
+
+locale: zh-Hant
+
+collections:
+  - name: products
+    label: 產品管理
+    folder: src/content/products
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {name: name, label: 產品名稱, widget: string}
+      - {name: image, label: 產品圖片, widget: image}
+      - name: params
+        label: 產品參數
+        widget: object
+        fields:
+          - {name: weight, label: 重量, widget: string}
+          - {name: mine, label: 礦區, widget: string}
+          - {name: skin, label: 皮殼, widget: string}
+          - {name: water, label: 種水, widget: string}
+          - {name: size, label: 尺寸, widget: string}
+
+  - name: contact
+    label: 聯繫方式
+    files:
+      - file: src/config/contact.json
+        name: contact
+        label: 聯繫方式
+        fields:
+          - {name: wechat, label: 微信 ID, widget: string}
+          - {name: line, label: Line ID, widget: string}
+
+  - name: site
+    label: 網站配置
+    files:
+      - file: src/config/site.json
+        name: site
+        label: 網站配置
+        fields:
+          - {name: siteName, label: 網站名稱, widget: string}
+          - {name: youtubeId, label: YouTube ID, widget: string}

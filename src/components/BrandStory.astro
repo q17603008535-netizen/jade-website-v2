@@ -1,0 +1,149 @@
+---
+---
+
+<section id="about" class="brand-story">
+	<div class="container">
+		<h2 class="section-title">關於我們</h2>
+		<p class="section-subtitle">專業翡翠原石買手 10年行業經驗</p>
+		
+		<div class="story-content">
+			<div class="story-image">
+				<div class="image-placeholder">
+					<span>品牌故事圖片</span>
+					<p>（待替換）</p>
+				</div>
+			</div>
+			
+			<div class="story-text">
+				<h3>10年專注，只為好石</h3>
+				<p>
+					我們是中緬邊境曼德勒翡翠原石市場的專業買手，從事行業10年以上。2014年開始接觸雕刻，潛心學習5年，後開始轉做直播，最終創立自己的事業。
+				</p>
+				<p>
+					我們始終堅持「不割韭菜，真實做生意」的理念，憑藉獨特的眼光和誠信經營，贏得了眾多客戶的信任。目前已有5位以上客戶跟隨我們超過3年。
+				</p>
+				
+				<div class="story-highlights">
+					<div class="highlight-item">
+						<span class="highlight-number">10+</span>
+						<span class="highlight-label">年行業經驗</span>
+					</div>
+					<div class="highlight-item">
+						<span class="highlight-number">5+</span>
+						<span class="highlight-label">年復購客戶</span>
+					</div>
+					<div class="highlight-item">
+						<span class="highlight-number">20%</span>
+						<span class="highlight-label">透明代購費</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.brand-story {
+		background-color: white;
+	}
+	
+	.story-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4rem;
+		align-items: center;
+	}
+	
+	.story-image {
+		position: relative;
+	}
+	
+	.image-placeholder {
+		width: 100%;
+		aspect-ratio: 4/3;
+		background: linear-gradient(135deg, #e8e4dc 0%, #d4cfc4 100%);
+		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		color: #999;
+	}
+	
+	.image-placeholder span {
+		font-size: 1.2rem;
+		margin-bottom: 0.5rem;
+	}
+	
+	.image-placeholder p {
+		font-size: 0.9rem;
+	}
+	
+	.story-text h3 {
+		font-size: 1.8rem;
+		color: var(--color-primary);
+		margin-bottom: 1.5rem;
+	}
+	
+	.story-text p {
+		color: var(--color-gray);
+		margin-bottom: 1rem;
+		line-height: 1.8;
+	}
+	
+	.story-highlights {
+		display: flex;
+		gap: 2rem;
+		margin-top: 2rem;
+		padding-top: 2rem;
+		border-top: 1px solid #eee;
+	}
+	
+	.highlight-item {
+		text-align: center;
+		padding: 20px;
+		border-radius: 12px;
+		transition: all 0.3s ease;
+		cursor: default;
+	}
+	
+	.highlight-item:hover {
+		background: linear-gradient(135deg, rgba(26, 92, 76, 0.05) 0%, rgba(201, 169, 98, 0.1) 100%);
+		transform: translateY(-5px);
+	}
+	
+	.highlight-item:hover .highlight-number {
+		transform: scale(1.1);
+		text-shadow: 0 4px 15px rgba(201, 169, 98, 0.4);
+	}
+	
+	.highlight-number {
+		display: block;
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: var(--color-secondary);
+		transition: all 0.3s ease;
+	}
+	
+	.highlight-label {
+		font-size: 0.9rem;
+		color: var(--color-gray);
+	}
+	
+	@media (max-width: 768px) {
+		.story-content {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		
+		.story-highlights {
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+		
+		.highlight-item {
+			flex: 1;
+			min-width: 80px;
+		}
+	}
+</style>

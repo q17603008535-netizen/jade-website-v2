@@ -1,0 +1,220 @@
+---
+// 站点配置 - 可在后台配置
+const siteConfig = {
+  logo: '', // LOGO 图片路径，例如：/images/logo.png
+  siteName: '翡翠原石專業買手', // 如果没有 LOGO 图片，显示文字
+  navLinks: [
+    { label: '關於我們', href: '#about' },
+    { label: '產品展示', href: '#products' },
+    { label: '聯繫我們', href: '#contact' }
+  ]
+};
+---
+
+<header class="site-header" id="siteHeader">
+  <div class="header-container">
+    <a href="/" class="site-logo">
+      {siteConfig.logo ? (
+        <img src={siteConfig.logo} alt={siteConfig.siteName} />
+      ) : (
+        <span class="logo-text">{siteConfig.siteName}</span>
+      )}
+    </a>
+    
+    <nav class="site-nav" id="siteNav">
+      {siteConfig.navLinks.map(link => (
+        <a href={link.href} class="nav-link">{link.label}</a>
+      ))}
+    </nav>
+    
+    <button class="nav-toggle" id="navToggle" aria-label="選單">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const navToggle = document.getElementById('navToggle');
+  const siteNav = document.getElementById('siteNav');
+  
+  // 滚动时显示/隐藏导航栏
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll <= 0) {
+      header?.classList.remove('scroll-up');
+      return;
+    }
+    
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      header?.classList.add('scroll-up');
+    } else {
+      header?.classList.remove('scroll-up');
+    }
+    
+    lastScroll = currentScroll;
+  });
+  
+  // 移动端菜单切换
+  navToggle?.addEventListener('click', () => {
+    siteNav?.classList.toggle('active');
+    navToggle?.classList.toggle('active');
+  });
+  
+  // 点击链接后关闭移动端菜单
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      siteNav?.classList.remove('active');
+      navToggle?.classList.remove('active');
+    });
+  });
+</script>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  .site-header.scroll-up {
+    transform: translateY(-100%);
+  }
+  
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .site-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .site-logo img {
+    height: 40px;
+    width: auto;
+  }
+  
+  .logo-text {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+  
+  .site-nav {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: var(--color-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width 0.2s ease;
+  }
+  
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--color-dark);
+    transition: all 0.3s ease;
+  }
+  
+  .nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+    
+    .site-nav {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: white;
+      flex-direction: column;
+      padding: 20px;
+      gap: 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-20px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .site-nav.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .nav-link {
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .nav-link::after {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,190 @@
+---
+---
+
+<section class="hero">
+	<div class="hero-background">
+		<!-- 
+			占位：實際使用時請上傳人物照片
+			可使用以下方式替換：
+			1. 背景圖片：將 background 改為 url('/images/banner.jpg')
+			2. 或移除注釋，使用 img 標籤
+		-->
+		<div class="hero-overlay"></div>
+	</div>
+	<div class="container hero-content">
+		<div class="hero-text">
+			<h1 class="hero-title">
+				<span class="title-line">專業翡翠原石</span>
+				<span class="title-line">買手推薦</span>
+			</h1>
+			<p class="hero-description">
+				10年行業經驗 | 瑞麗公司 | 一物一證<br>
+				為您精選高品質翡翠原石
+			</p>
+			<div class="hero-buttons">
+				<a href="#products" class="btn btn-primary">查看產品</a>
+				<button type="button" class="btn btn-outline" id="btnConsult">立即咨詢</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		min-height: 60vh;
+		display: flex;
+		align-items: center;
+		overflow: hidden;
+		padding-top: 80px;
+	}
+	
+	.hero-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, #0f3d32 0%, #1a5c4c 50%, #2d7a5f 100%);
+	}
+	
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: 
+			radial-gradient(circle at 20% 80%, rgba(201, 169, 98, 0.15) 0%, transparent 50%),
+			radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
+	}
+	
+	.hero-content {
+		position: relative;
+		z-index: 10;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 60px 20px;
+		width: 100%;
+	}
+	
+	.hero-text {
+		max-width: 700px;
+	}
+	
+	.hero-title {
+		font-size: 4rem;
+		line-height: 1.2;
+		margin-bottom: 1.5rem;
+	}
+	
+	.title-line {
+		display: block;
+		color: white;
+	}
+	
+	.hero-description {
+		font-size: 1.3rem;
+		color: rgba(255, 255, 255, 0.85);
+		margin-bottom: 2rem;
+		line-height: 1.8;
+	}
+	
+	.hero-buttons {
+		display: flex;
+		gap: 1rem;
+	}
+	
+	.btn {
+		display: inline-block;
+		padding: 1rem 2rem;
+		font-size: 1rem;
+		font-weight: 500;
+		text-decoration: none;
+		border-radius: 4px;
+		transition: all 0.3s ease;
+		cursor: pointer;
+	}
+	
+	.btn-primary {
+		background-color: var(--color-secondary);
+		color: var(--color-dark);
+		border: 2px solid var(--color-secondary);
+	}
+	
+	.btn-primary:hover {
+		background-color: var(--color-gold);
+		border-color: var(--color-gold);
+	}
+	
+	.btn-outline {
+		background-color: transparent;
+		color: white;
+		border: 2px solid white;
+	}
+	
+	.btn-outline:hover {
+		background-color: white;
+		color: var(--color-primary);
+	}
+	
+	.contact-card {
+		background: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(10px);
+		padding: 2rem;
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+	
+	.contact-label {
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 0.9rem;
+		margin-bottom: 0.5rem;
+	}
+	
+	.contact-phone {
+		color: white;
+		font-size: 1.2rem;
+		text-decoration: none;
+	}
+	
+	@media (max-width: 768px) {
+		.hero-title {
+			font-size: 2.5rem;
+		}
+		
+		.hero-description {
+			font-size: 1rem;
+		}
+		
+		.hero-content {
+			flex-direction: column;
+			text-align: center;
+			padding: 60px 20px;
+		}
+		
+		.hero-buttons {
+			justify-content: center;
+			flex-direction: column;
+		}
+		
+		.contact-card {
+			margin-top: 2rem;
+		}
+	}
+</style>
+
+<script>
+  const btnConsult = document.getElementById('btnConsult');
+  
+  btnConsult?.addEventListener('click', () => {
+    // 尝试调用弹窗
+    if (typeof window.openContactModal === 'function') {
+      window.openContactModal();
+    } else {
+      // 如果弹窗未加载，则滚动到联系区域
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+</script>

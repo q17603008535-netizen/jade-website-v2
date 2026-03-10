@@ -1,0 +1,303 @@
+---
+// 弹窗联系方式配置 - 可在后台配置
+const contactConfig = {
+  wechat: '',   // 微信号
+  line: '',     // Line ID
+  enabled: true // true=显示，false=隐藏
+};
+
+const wechatId = contactConfig.wechat;
+const lineId = contactConfig.line;
+---
+
+{contactConfig.enabled && (
+  <div class="contact-modal" id="contactModal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">×</button>
+      
+      <h3 class="modal-title">聯繫我們</h3>
+      <p class="modal-subtitle">點擊即可複製 Line / WeChat ID</p>
+      
+      <div class="contact-options">
+        {wechatId && (
+          <button class="contact-option wechat" data-copy={wechatId}>
+            <span class="option-icon">💬</span>
+            <span class="option-label">WeChat</span>
+            <span class="option-id">{wechatId}</span>
+            <span class="option-hint">點擊複製</span>
+          </button>
+        )}
+        
+        {lineId && (
+          <button class="contact-option line" data-copy={lineId}>
+            <span class="option-icon">📱</span>
+            <span class="option-label">Line</span>
+            <span class="option-id">{lineId}</span>
+            <span class="option-hint">點擊複製</span>
+          </button>
+        )}
+        
+        {!wechatId && !lineId && (
+          <p class="no-contact">（聯繫方式待配置）</p>
+        )}
+      </div>
+      
+      <div class="modal-footer">
+        <p>或直接填寫以下表單</p>
+        <button type="button" class="btn-form" id="btnFillForm">填寫表單</button>
+      </div>
+    </div>
+  </div>
+)}
+
+<script>
+  const modal = document.getElementById('contactModal');
+  const modalClose = document.getElementById('modalClose');
+  const modalOverlay = document.getElementById('modalOverlay');
+  
+  // 打开弹窗
+  window.openContactModal = () => {
+    modal?.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  };
+  
+  // 关闭弹窗
+  const closeModal = () => {
+    modal?.classList.remove('show');
+    document.body.style.overflow = '';
+  };
+  
+  modalClose?.addEventListener('click', closeModal);
+  modalOverlay?.addEventListener('click', closeModal);
+  
+  // 按 ESC 关闭
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+  
+  // 一键复制
+  document.querySelectorAll('.contact-option').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const copyText = btn.getAttribute('data-copy');
+      if (copyText) {
+        try {
+          await navigator.clipboard.writeText(copyText);
+          
+          const hint = btn.querySelector('.option-hint') as HTMLElement;
+          if (hint) {
+            hint.textContent = '✅ 已複製!';
+            hint.style.color = '#4CAF50';
+            setTimeout(() => {
+              hint.textContent = '點擊複製';
+              hint.style.color = '';
+            }, 2000);
+          }
+        } catch (err) {
+          console.error('複製失敗:', err);
+        }
+      }
+    });
+  });
+  
+  // 点击填写表单 - 关闭弹窗并滚动到表单
+  const btnFillForm = document.getElementById('btnFillForm');
+  btnFillForm?.addEventListener('click', () => {
+    closeModal();
+    setTimeout(() => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
+  });
+</script>
+
+<style>
+  .contact-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-modal.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+  }
+  
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: 420px;
+    background: white;
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-modal.show .modal-content {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .modal-close:hover {
+    background: #eee;
+    color: #333;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+    color: var(--color-primary, #1a5c4c);
+    margin-bottom: 8px;
+  }
+  
+  .modal-subtitle {
+    color: #666;
+    margin-bottom: 25px;
+  }
+  
+  .contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+  
+  .contact-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #f8f8f8;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+  }
+  
+  .contact-option:hover {
+    background: #f0f0f0;
+    border-color: var(--color-primary, #1a5c4c);
+    transform: translateY(-2px);
+  }
+  
+  .contact-option.wechat {
+    background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
+    color: white;
+  }
+  
+  .contact-option.wechat:hover {
+    background: linear-gradient(135deg, #06ad56 0%, #05a04d 100%);
+  }
+  
+  .contact-option.line {
+    background: linear-gradient(135deg, #06dbb5 0%, #05c29d 100%);
+    color: white;
+  }
+  
+  .contact-option.line:hover {
+    background: linear-gradient(135deg, #05c29d 0%, #04a885 100%);
+  }
+  
+  .option-icon {
+    font-size: 1.8rem;
+  }
+  
+  .option-label {
+    font-weight: 600;
+    font-size: 1rem;
+    min-width: 60px;
+  }
+  
+  .option-id {
+    flex: 1;
+    font-weight: 500;
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+  
+  .option-hint {
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+  
+  .no-contact {
+    color: #999;
+    padding: 20px;
+  }
+  
+  .modal-footer {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+  }
+  
+  .modal-footer p {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+  
+  .btn-form {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--color-primary, #1a5c4c);
+    color: white;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  
+  .btn-form:hover {
+    background: var(--color-primary-dark, #0f3d32);
+  }
+  
+  @media (max-width: 480px) {
+    .modal-content {
+      padding: 30px 20px;
+    }
+    
+    .contact-option {
+      padding: 12px 15px;
+    }
+    
+    .option-icon {
+      font-size: 1.4rem;
+    }
+  }
+</style>

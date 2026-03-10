@@ -1,0 +1,96 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-TW">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="專業翡翠原石買手，10年經驗，瑞麗公司，一物一證" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--color-primary: #1a5c4c;
+		--color-primary-dark: #0f3d32;
+		--color-secondary: #c9a962;
+		--color-gold: #b8860b;
+		--color-light: #f8f6f1;
+		--color-dark: #1a1a1a;
+		--color-gray: #666;
+		--color-white: #ffffff;
+		--font-sans: 'Noto Sans TC', sans-serif;
+		--font-serif: 'Noto Serif TC', serif;
+	}
+	
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	
+	html {
+		scroll-behavior: smooth;
+	}
+	
+	body {
+		font-family: var(--font-sans);
+		color: var(--color-dark);
+		background-color: var(--color-light);
+		line-height: 1.6;
+	}
+	
+	h1, h2, h3, h4, h5, h6 {
+		font-family: var(--font-serif);
+		font-weight: 600;
+	}
+	
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+	
+	section {
+		padding: 80px 0;
+	}
+	
+	.section-title {
+		font-size: 2.5rem;
+		text-align: center;
+		margin-bottom: 1rem;
+		color: var(--color-primary);
+	}
+	
+	.section-subtitle {
+		text-align: center;
+		color: var(--color-gray);
+		margin-bottom: 3rem;
+		font-size: 1.1rem;
+	}
+	
+	@media (max-width: 768px) {
+		section {
+			padding: 50px 0;
+		}
+		
+		.section-title {
+			font-size: 1.8rem;
+		}
+	}
+</style>
