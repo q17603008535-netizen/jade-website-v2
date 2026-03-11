@@ -2,7 +2,7 @@ backend:
   name: github
   repo: q17603008535-netizen/jade-website-v2
   branch: main
-  base_url: https://jade-website-v2.q17603008535.workers.dev
+  base_url: https://jade-website-v2.pages.dev
 
 media_folder: public/images
 public_folder: /images
