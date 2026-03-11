@@ -5,7 +5,7 @@ export default {
     const clientId = env.GITHUB_CLIENT_ID || process.env.GITHUB_CLIENT_ID;
 
     if (url.pathname === "/auth" || url.pathname === "/auth/") {
-      const redirectUri = `${url.origin}/callback`;
+      const redirectUri = `https://jade-website-v2.pages.dev/callback`;
       
       const params = new URLSearchParams({
         client_id: clientId,
@@ -54,7 +54,7 @@ export default {
 <body>
   <script>
     localStorage.setItem("dc_access_token", "${accessToken}");
-    window.location.href = "/admin/";
+    window.location.href = "https://jade-website-v2.pages.dev/admin/";
   </script>
   <p>Authentication successful! Redirecting to admin...</p>
 </body>

@@ -3,8 +3,4 @@ main = "index.js"
 compatibility_date = "2024-01-01"
 
 [env.production]
-routes = [
-  { pattern = "jade-website-v2.q17603008535.workers.dev/auth" },
-  { pattern = "jade-website-v2.q17603008535.workers.dev/callback" },
-  { pattern = "jade-website-v2.q17603008535.workers.dev/check" }
-]
+routes = []
