@@ -39,18 +39,20 @@ export async function onRequest(context) {
 </head>
 <body>
   <script>
+    localStorage.setItem("dc_access_token", "${accessToken}");
+    
+    // Try to close the popup if we're in one
     if (window.opener) {
       window.opener.postMessage({ 
         type: 'github-auth', 
         token: "${accessToken}" 
       }, window.location.origin);
-      window.close();
+      setTimeout(() => window.close(), 100);
     } else {
-      localStorage.setItem("dc_access_token", "${accessToken}");
       window.location.href = "https://jade-website-v2.pages.dev/admin/";
     }
   </script>
-  <p>Authentication successful! Closing window...</p>
+  <p>Authentication successful! Redirecting to admin...</p>
 </body>
 </html>`;
 
