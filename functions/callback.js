@@ -30,6 +30,9 @@ export async function onRequest(context) {
     return new Response("Failed to obtain access token", { status: 400 });
   }
 
+  // Safely escape the token for JavaScript
+  const escapedToken = JSON.stringify(accessToken);
+  
   const html = `
 <!DOCTYPE html>
 <html>
@@ -39,20 +42,52 @@ export async function onRequest(context) {
 </head>
 <body>
   <script>
-    localStorage.setItem("dc_access_token", "${accessToken}");
-    
-    // Try to close the popup if we're in one
-    if (window.opener) {
-      window.opener.postMessage({ 
-        type: 'github-auth', 
-        token: "${accessToken}" 
-      }, window.location.origin);
-      setTimeout(() => window.close(), 100);
-    } else {
-      window.location.href = "https://jade-website-v2.pages.dev/admin/";
+    try {
+      const token = ${escapedToken};
+      console.log('OAuth callback received token, length:', token.length);
+      
+      // Always store in localStorage as backup
+      localStorage.setItem("dc_access_token", token);
+      console.log('Token stored in localStorage');
+      
+      // Check if we're in a popup
+      if (window.opener && !window.opener.closed) {
+        console.log('Detected popup window, sending message to parent');
+        try {
+          window.opener.postMessage({ 
+            type: 'github-auth', 
+            token: token 
+          }, "https://jade-website-v2.pages.dev");
+          console.log('Message sent to parent window');
+        } catch (postMessageError) {
+          console.error('postMessage failed:', postMessageError);
+        }
+        
+        // Try to close the popup after a short delay
+        setTimeout(() => {
+          try {
+            window.close();
+            console.log('Popup closed');
+          } catch (closeError) {
+            console.warn('Could not close popup:', closeError);
+            // Fallback: redirect in the popup itself
+            window.location.href = "https://jade-website-v2.pages.dev/admin/";
+          }
+        }, 300);
+      } else {
+        console.log('Not in popup or parent closed, redirecting directly');
+        window.location.href = "https://jade-website-v2.pages.dev/admin/";
+      }
+    } catch (error) {
+      console.error('Error in OAuth callback:', error);
+      document.body.innerHTML = '<h1>Authentication Error</h1><p>Please check console for details.</p>';
     }
   </script>
-  <p>Authentication successful! Redirecting to admin...</p>
+  <p>Authentication successful! Processing...</p>
+  <noscript>
+    <p>JavaScript is required for authentication. Please enable JavaScript and try again.</p>
+    <p><a href="https://jade-website-v2.pages.dev/admin/">Go to admin</a></p>
+  </noscript>
 </body>
 </html>`;
 
